@@ -1,7 +1,2 @@
-for i in range(2,101):
-    fg = 0
-    for j in range(2,i//2):
-        if (i % j ==0):
-            fg=1
-    if (fg== 0):
-        print (i)
+long1 = len('这个字符串有多长我也不知道'.encode('utf-8'))
+print(long1)
