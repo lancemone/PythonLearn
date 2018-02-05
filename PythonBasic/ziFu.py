@@ -9,7 +9,7 @@ print("this' python")
 print('''this' is my "little cute" and gf''')
 #自然字符串（指示某些不需要特别处理的字符串，如转义符等）
 print(r"Newlines are indicated by\n")
-#转义符\
+#转义符\       http://www.opython.com/143.html
 print("Newlines are indicated by\
 n")
 #转义符转义''或“”
@@ -106,3 +106,88 @@ print (str[-2:-8:-2]) # 倒序从倒数第2位开始间隔1位截取到倒数第
 #重复字符串
 print('hello \n' *9)
 
+#字符串大小写转换
+'''
+大小写转换的方法有以下几种：
+
+upper()： 字符串全部字符转换为大写
+lower()：字符串全部字符转换为小写
+swapcase() ：字符串全部字符大小写互换
+capitalize()：字符串首个单词首字母大写
+title()： 字符串中全部单词首字母大写
+这些方法均不用写入参数，直接调用       '''
+
+s = "i'm a SuperMan"
+print(s.upper())
+print(s.lower())
+print(s.swapcase())
+print(s.capitalize())
+print(s.title())
+
+#替换部分字符   替换部分字符的方法是“replace(old,new,count)”
+'''old：表示需要被替换的字符或字符串；
+new：表示替换后的新字符或字符串；
+count：表示替换的次数，此参数可省略；如果省略表示替换所有需要被替换的字符或字符串。   '''
+
+s = "i'm a good boy and i'm so happy i can meet her"
+print(s.replace('i\'m', 'you\'re'))    #you're a good boy and you're so happy i can meet her
+print(s.replace('i\'m', 'you\'re', 1))   #you're a good boy and i'm so happy i can meet her
+
+
+#去除字符串两侧指定内容
+'''字符串去除两侧指定内容的方法有三种：
+strip(chars) ：去除字符串两侧的指定内容，并且，可以同时去除多个相同的指定内容；参数chars为指定的一个或多个字符，不填入该参数则去除字符串两侧所有空格。
+lstrip(chars)  ：去除字符串左侧的指定内容，并且，可以同时去除多个相同的指定内容；参数chars为指定的一个或多个字符，不填入该参数则去除字符串左侧所有空格。
+rstrip(chars) ：去除字符串右侧的指定内容，并且，可以同时去除多个相同的指定内容；参数chars为指定的一个或多个字符，不填入该参数则去除字符串右侧所有空格。'''
+
+str1 = '   人人为我 我为人人   '
+str2 = '人人为我 我为人人'
+
+print (str1)
+print (str1.strip())
+print (str1.lstrip())
+print (str1.rstrip())
+print (str2.strip('人'))
+print (str2.lstrip('人'))
+print (str2.rstrip('人'))
+print (str2.strip('人人为'))
+
+
+#字符串查询
+'''字符串查询的方法有两种：
+
+第一种：index(sub,start,end)和rindex(sub,start,end)
+
+index方法是从左至右查询，rindex方法是从右至左查询；
+
+参数sub是指被查询的字符或字符串，参数start是查询的起始位置，参数end是查询的终止位置（终止位置不在查询范围内）；
+
+参数start和参数end可以同时省略，这时为查询字符串中全部字符；也可以只省略参数end，表示查询范围为起始位置至末尾。   '''
+
+s = '人人为我，我为人人。'
+
+print (s.index('人')) # 从左向右查询全部字符     0
+print (s.index('人',2)) # 从左侧第3个字符开始向右查询至末尾     7
+print (s.rindex('人')) # 从右向左查询全部字符      8
+print (s.rindex('人',0,8)) # 从右侧第9个字符之前向左查询至首位      7
+
+'''第二种：find(sub,start,end)和rfind(sub,start,end)
+
+这两个函数和index函数以及rindex函数作用相同，并且用法相同。
+
+但是，当没有查询结果时，index函数与rindex函数会提示错误：ValueError：substring not find（值错误：未发现被查询的字符串）。
+
+而另外的两个函数，find函数和rfind函数，在没有查询结果时，返回值为-1'''
+
+s = '人人为我，我为人人。'
+
+print (s.find('地'))
+print (s.index('地'))
+
+
+#字符串中字符的计数
+'''字符串的计数方法是count(x,start,end)，这个函数可以统计字符串中被查询的字符或字符串出现的次数。
+
+参数x是指被查询的字符或字符串，参数start是查询的起始位置，参数end是查询的终止位置（终止位置不在查询范围内）；
+
+参数start和参数end可以同时省略，这时为查询字符串中全部字符；也可以只省略参数end，表示查询范围为起始位置至末尾。'''

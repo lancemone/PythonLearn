@@ -1,2 +1,4 @@
-long1 = len('这个字符串有多长我也不知道'.encode('utf-8'))
-print(long1)
+s = '人人为我，我为人人。'
+
+print (s.find('地'))
+print (s.index('地'))
