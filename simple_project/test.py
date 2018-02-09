@@ -1,4 +1,5 @@
-id2 = input('please input your IDcard number:')
-print('birthday is {}-{}-{}'.format(id2[6:10], id2[10:12], id2[12:14]))
-print('birthday is {1}-{0}-{2}'.format(id2[6:10], id2[10:12], id2[12:14]))
-print('birthday is {year}-{month}-{day}'.format(year=id2[6:10], month=id2[10:12], day=id2[12:14]))
+list1 = []  # 创建空的列表
+list2 = [1]
+list3 = [1, 2, 3, 4]
+classmates = ['莫涛', '明明', '方刚']
+print(list1, list2, list3, classmates)
