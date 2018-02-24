@@ -1,11 +1,18 @@
-lst01 = [3, 1, 5, 7, 6, 9]
-lst01.reverse()  # 反向排序：使用reverse()函数
-print(lst01)
-# 升降排序：使用sort(cmp,key，reverse)函数，参数cmp为函数，参数key为函数，reverse为布尔值（True和False）
-lst01.sort()  # 参数为空时默认为升序排列
-lst01.sort(reverse=True)  # 通过设置参数reverse=True，转换为降序排列
-# 升降序排列也可以使用函数sorted(iterable,cmp，key，reverse)，参数iterable为可迭代对象；参数cmp为函数，参数key为函数，reverse为布尔值
-# sorted()函数不会改变原列表
-print(sorted(lst01))  # 输出显示升序列表
-print(sorted(lst01, reverse=True))  # 输出显示降序列表
-print(lst01)  # 输出显示原列表
+s1 = set('123')
+s2 = set('123')
+s3 = set('abc')
+
+# 添加单个元素
+s1.add('4')
+
+# 添加多个元素
+s2.update(['4', '5', '6'])  # 添加列表到集合，列表元素会被分解为单个元素后添加到集合
+s3.update('de')  # 添加字符串到集合，字符串会被分解为单个元素后添加到集合
+
+# 显示输出
+print(s1)  # 显示输出结果为：{'4', '3', '1', '2'}
+print(s2)  # 显示输出结果为：{'4', '2', '6', '5', '3', '1'}
+print(s3)  # 显示输出结果为：{'c', 'b', 'd', 'e', 'a'}
+
+s1.intersection_update(s2)  # 集合s12的内容为s1 & s2后的结果
+print(s1)  # 输入结果 {'1', '2', '3', '4'}

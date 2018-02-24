@@ -1,6 +1,6 @@
 # 形式上列表和元组的区别只在于列表两侧是方括号
 
-lst11 = []  # 创建空的列表
+lst11 = []  # 创建空的列表，长度为0
 lst22 = [1]
 lst33 = [1, 2, 3, 4]
 classmates = ['fangfang', '明明', '方刚']
@@ -11,6 +11,11 @@ print(lst11, lst22, lst33, classmates)
 lst1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]  # 创建列表
 lst2 = ['a', 'b', 'c']
 lst3 = ['你', '我', '你', '他', '我', '我']
+lst4 = [1, 2, 'ni', '好']  # 列表中的元素类型可以不同
+# list元素也可以是另一个list，比如：
+s1 = ['php', 'asp']
+s2 = ['python', 'java', s1, 'htlm']
+print(s2[2][0])  # 取到s1中的php
 
 print(len(lst1))  # 获取列表的元素数量
 print(lst1 + lst2)  # 连接多个列表为一个新列表
@@ -26,7 +31,7 @@ print(lst3.count('我'))  # 获取元组中某个元素的出现次数
 
 # 添加元素
 
-lst11.append(1)  # 添加单个元素到列表。append(object)函数可以为列表添加单个元素，参数object为对象；
+lst11.append(1)  # 添加单个元素到列表末尾。append(object)函数可以为列表添加单个元素，参数object为对象；
 lst33.extend(6, 7, 8)  # 添加多个元素到列表，使用extend(iterable)函数可以为列表添加多个元素，参数iterable为可迭代对象。
 print(lst11, lst33)
 
