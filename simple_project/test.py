@@ -1,18 +1,26 @@
-s1 = set('123')
-s2 = set('123')
-s3 = set('abc')
+d2 = {'yue': ['月', '约', '悦'], 'ri': '日', 'yi': 1}  # 创建字典
+d3 = dict(小楼='xiaolou', 小美='beautiful')  # 通过可变参数创建对象
 
-# 添加单个元素
-s1.add('4')
-
-# 添加多个元素
-s2.update(['4', '5', '6'])  # 添加列表到集合，列表元素会被分解为单个元素后添加到集合
-s3.update('de')  # 添加字符串到集合，字符串会被分解为单个元素后添加到集合
-
-# 显示输出
-print(s1)  # 显示输出结果为：{'4', '3', '1', '2'}
-print(s2)  # 显示输出结果为：{'4', '2', '6', '5', '3', '1'}
-print(s3)  # 显示输出结果为：{'c', 'b', 'd', 'e', 'a'}
-
-s1.intersection_update(s2)  # 集合s12的内容为s1 & s2后的结果
-print(s1)  # 输入结果 {'1', '2', '3', '4'}
+d3['小明'] = 'xiaoming'  # 添加新元素到字典
+print(d3)
+d3['小楼'] = 'xiaol'  # 修改已存在键对应值
+print(d3)
+d3['小樱'] = 'xiao', 'ying'  # 添加值为元组的新元素到字典
+print(d3)
+print(d3.setdefault('小楼', 'xiaolou'))  # 字典中存在相应的键，则返回该键对应的值
+print(d3.setdefault('小井', 'xiaojing'))
+d3.update(樱井='yingjing', 明步='mingbu')  # 通过可变参数添加多个元素
+print(d3)
+d3.update((('樱井', '好白'), ('明步', '好大')))  # 通过元组添加多个元素
+print(d3)
+d3.update([('樱井', '好白'), ('明步', '好大')])  # 通过列表添加多个元素
+print(d3)
+d3.update({'樱井': '好白', '明步': '好大'})  # 通过字典添加多个元素
+print(d3)
+d3.update(d2)  # 合并字典元素
+print(d3)
+del d3['樱井']  # 删除元素
+print(d3)
+print(d3.pop('小楼'))
+print(d3.pop('樱井', '好爽'))  # 显示输出结果为：好爽
+print(d3)
