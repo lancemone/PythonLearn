@@ -1,16 +1,6 @@
-def get_birthday(id, get_age=True):  # 定义函数名称并设定参数,get_age为关键字参数,默认值为False
-    if get_age:  # 对参数进行判断
-        return 2018 - int(id[6:10])
-    else:
-        year = id[6:10]
-        month = id[10:12]
-        day = id[12:14]
-        return year, month, day
+def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数
+    return (first + sum(rest)) / (1 + len(rest))  # rest是由所有其他位置参数组成的元组。然后我们在代码中把它当成了一个序列来进行后续的计算。
 
 
-bir = get_birthday('181281199812142412', True)
-bir1 = get_birthday('181281199812142412', False)
-bir2 = get_birthday('123718237912461123')
-print(bir)
-print(bir1)
-print(bir2)
+print(avg(1, 2))  # 1.5
+print(avg(1, 2, 3, 4))  # 2.5

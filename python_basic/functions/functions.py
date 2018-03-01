@@ -49,6 +49,16 @@ b = get_birthday2('181629189203231921')  # 可以通过1个变量接收函数的
 print('birthday is %s-%s-%s' % b)
 
 
+# 定义可接受任意数量参数的函数
+def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数
+    return (first + sum(rest)) / (1 + len(rest))  # rest是由所有其他位置参数组成的元组。然后我们在代码中把它当成了一个序列来进行后续的计算。
+
+
+print(avg(1, 2))  # 1.5
+print(avg(1, 2, 3, 4))  # 2.5
+
+
+
 # 通过设定一个参数来控制函数返回结果
 # 设置默认值的参数我们叫它关键字参数，没有默认值的参数是位置参数。关键字参数对位置没有要求，不管是设定参数还是调用函数时，可以任意顺序写入。位置参数必须有着严格的位置和顺序，这样才能在调用函数时一一对应。
 def get_birthday(id, get_age=False):  # 定义函数名称并设定参数,get_age为关键字参数,默认值为False.若只定义参数而不写入默认值，即便函数运算过程中没有使用这个参数，程序也会抛出异常
@@ -65,3 +75,26 @@ def get_birthday(id, get_age=False):  # 定义函数名称并设定参数,get_ag
 bir = get_birthday('181281199812142412', True)
 print(bir)  # 执行if语句
 bir0 = get_birthday('181281199812142412')  # 执行else语句
+
+
+# 抛出异常 我们定义的函数，往往对输入的参数有类型的要求，当输入了错误的类型，会有异常发生
+def subtraction(num1, num2):
+    # 使用内置函数isinstance()对输入的参数值进行类型的比较，当任何一个参数不是int（整数）或者float（小数）类型时，都将抛出异常。
+    if not isinstance(num1, (int, float)) \
+            or not isinstance(num2, (int, float)):  # 判断参数是否为指定类型，代码过长时使用 \ 换行
+        raise TypeError('参数类型错误，参数必须为整数或小数。')  # 关键字raise用于引发异常，TypeError()为异常类型，括号中可以输入自定义的异常提示
+
+    result1 = num1 - num2
+    return result1
+
+
+print(subtraction(5, 3))
+print(subtraction('5', 3))  # 参数类型错误，程序抛出异常
+
+
+# 定义空函数  空函数一般是在还没有确定函数内部代码如何编写，但是又需要不影响程序运行时使用。
+def subtraction1(num1, num2):  # 定义函数并设定参数
+    pass  # 使用pass占位，保证程序运行正常
+
+
+print(subtraction1(1, 2))  # 调用函数，返回结果为：None。
