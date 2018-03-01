@@ -53,9 +53,37 @@ print('birthday is %s-%s-%s' % b)
 def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数
     return (first + sum(rest)) / (1 + len(rest))  # rest是由所有其他位置参数组成的元组。然后我们在代码中把它当成了一个序列来进行后续的计算。
 
-
 print(avg(1, 2))  # 1.5
 print(avg(1, 2, 3, 4))  # 2.5
+
+import html
+
+
+# 使用两个**开头的参数使函数接受任意数量的关键字参数
+def make_element(name, value, **attrs):  # 在这里，attrs是一个包含所有被传入进来的关键字参数的字典。
+    keyvals = ['%s = "%s"' % item for item in attrs.items()]
+    attr_str = ''.join(keyvals)
+    element = '<{name}{attrs}>{value}</{name}>'.format(
+        name=name,
+        attrs=attr_str,
+        value=html.escape(value)
+    )
+    return element
+
+
+print(make_element('item', 'Albatross', size='large', quantity=6))
+print(make_element('p', '<spam>'))
+
+
+def anyargs(*args, **kwargs):  # 能同时接受任意数量的位置参数和关键字参数
+    print(args)  # A tuple
+    print(kwargs)  # A dict
+
+
+# 一个*参数只能出现在函数定义中最后一个位置参数后面，而 **参数只能出现在最后一个参数。 有一点要注意的是，在*参数后面仍然可以定义其他参数。
+
+
+
 
 
 
