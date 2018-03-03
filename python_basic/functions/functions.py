@@ -49,16 +49,37 @@ b = get_birthday2('181629189203231921')  # 可以通过1个变量接收函数的
 print('birthday is %s-%s-%s' % b)
 
 
-# 定义可接受任意数量参数的函数
+# 定义一个根据输入参数返回一个列表的函数
+def creat_name_list(name_list, name1, name2, name3):
+    name_list.append(name1)  # 为列表添加元素
+    name_list.append(name2)
+    name_list.append(name3)
+
+
+lst = []  # 创建空列表
+creat_name_list(lst, 1, 2, 3)  # 这样的操作仅限于可变的数据结构，而数字、字符串以及元组是不能够被改变的，所以无法进行这样的修改。
+print(lst)  # 输出[1， 2， 3]
+
+
+# 收集参数  定义可接受任意数量参数的函数
+def creat_name_lst(name_lst, *names):
+    print(type(names))  # 显示输出参数names的数据类型，结果为：<class 'tuple'>
+    if names is not None:  # 判断收集参数names不为空值
+        for name in names:  # 循环遍历names
+            name_lst.append(name)  # 为列表添加新元素
+
+
+lst1 = []
+creat_name_lst(lst1, 1, 2, 3, 4, 5, 6)
+print(lst1)
+
+
 def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数
     return (first + sum(rest)) / (1 + len(rest))  # rest是由所有其他位置参数组成的元组。然后我们在代码中把它当成了一个序列来进行后续的计算。
-
 print(avg(1, 2))  # 1.5
 print(avg(1, 2, 3, 4))  # 2.5
 
 import html
-
-
 # 使用两个**开头的参数使函数接受任意数量的关键字参数
 def make_element(name, value, **attrs):  # 在这里，attrs是一个包含所有被传入进来的关键字参数的字典。
     keyvals = ['%s = "%s"' % item for item in attrs.items()]
