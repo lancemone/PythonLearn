@@ -55,7 +55,6 @@ def creat_name_list(name_list, name1, name2, name3):
     name_list.append(name2)
     name_list.append(name3)
 
-
 lst = []  # 创建空列表
 creat_name_list(lst, 1, 2, 3)  # 这样的操作仅限于可变的数据结构，而数字、字符串以及元组是不能够被改变的，所以无法进行这样的修改。
 print(lst)  # 输出[1， 2， 3]
@@ -68,13 +67,22 @@ def creat_name_lst(name_lst, *names):
         for name in names:  # 循环遍历names
             name_lst.append(name)  # 为列表添加新元素
 
-
 lst1 = []
 creat_name_lst(lst1, 1, 2, 3, 4, 5, 6)
 print(lst1)
 
 
-def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数
+# 在函数内部创建列表然后返回
+def creat_name_lst1(*names):
+    name_lst1 = list(names)
+    return name_lst1
+
+
+lst1_1 = creat_name_lst1(1, 2, 3, 4)
+print(lst1_1)
+
+
+def avg(first, *rest):  # 使用一个*参数让一个函数接受任意数量的位置参数,*只能解析可迭代序列
     return (first + sum(rest)) / (1 + len(rest))  # rest是由所有其他位置参数组成的元组。然后我们在代码中把它当成了一个序列来进行后续的计算。
 print(avg(1, 2))  # 1.5
 print(avg(1, 2, 3, 4))  # 2.5
@@ -91,14 +99,31 @@ def make_element(name, value, **attrs):  # 在这里，attrs是一个包含所�
     )
     return element
 
-
 print(make_element('item', 'Albatross', size='large', quantity=6))
 print(make_element('p', '<spam>'))
+
 
 
 def anyargs(*args, **kwargs):  # 能同时接受任意数量的位置参数和关键字参数
     print(args)  # A tuple
     print(kwargs)  # A dict
+
+
+# * 或 ** 另一种用法
+def user_info(name, age, height, sex):
+    info = 'name:%s age:%s height:%s sex:%s' % (name, age, height, sex)
+    return info
+
+
+lou = {'name': 'xiaolou', 'age': '18', 'height': '180', 'sex': 'male'}  # 创建参数字典
+print(user_info(**lou))  # 调用函数，并传入参数
+
+s1 = {(1, 2, 3), (3, 4, 5)}
+s2 = {*(1, 2, 3), *(3, 4, 5)}
+print(s1)  # 显示输出结果为：{(3, 4, 5), (1, 2, 3)}
+print(s2)  # 显示输出结果为：{1, 2, 3, 4, 5}
+
+
 
 
 # 一个*参数只能出现在函数定义中最后一个位置参数后面，而 **参数只能出现在最后一个参数。 有一点要注意的是，在*参数后面仍然可以定义其他参数。
