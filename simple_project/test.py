@@ -1,20 +1,18 @@
-# 函数嵌套  在函数内部再定义函数
-x = 0  # 全局变量
+def synthesis():
+    count = int(input('请放入宝石:'))
+    while True:
+        if count < 3:
+            count += int(input('宝石太少，请在放入一些宝石：'))
+        else:
+            break
+
+    def execute():
+        result = count // 3  # 调用外部变量进行整除运算
+        print('您放入了%s颗宝石，合成了%s颗高级宝石' % (count, result))
+
+    return execute()
 
 
-def outside():  # 定义函数
-    x = 1  # 局部变量，内嵌函数的外部变量
-
-    def inside():  # 定义内嵌函数
-        x = 2
-        return x
-
-    # 函数的返回值不仅可以返回多个，而且可以返回内嵌函数（这是闭包）
-    return x, inside  # 返回变量值和函数
-
-
-a, b = outside()  # 通过两个变量接收outside函数的返回值x和inside
-print(x)  # 显示输出结果为：0
-print(a)  # 显示输出结果为：1
-# 返回内嵌函数时，如果函数名称后方没有加上“()”，调用外层函数时不会立即执行返回的函数，需要在调用外层函数后，添加“()”来执行
-print(b)  # 显示输出结果为：2
+exe = synthesis()
+print('------------------开始合成------------------')
+exe  # 执行闭包内容
