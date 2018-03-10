@@ -1,21 +1,17 @@
-# -*- coding: utf-8 -*-
-
-
 import logging
 import os
 from time import sleep
 
-# 屏幕分辨率
-device_x, device_y = 1920, 1080
+# 机型：MX4
 
-# 通关模式：1=重新挑战 -> 挑战界面，2=重新挑战-> 更换阵容
-game_mode = 2
 
-# 各步骤等待间隔
-step_wait = [3, 13, 24, 3, 3]
 
 # 刷金币次数
-repeat_times = 60
+repeat_times = int(input('请输入刷金币次数：'))
+
+# 定义真机分辨率
+device_x, device_y = 1920, 1152
+
 
 # 日志输出
 logging.basicConfig(format='%(asctime)s %(message)s',
@@ -23,37 +19,75 @@ logging.basicConfig(format='%(asctime)s %(message)s',
                     level=logging.DEBUG)
 
 
+# 创建一个动作函数
 def tap_screen(x, y):
     """calculate real x, y according to device resolution."""
-    base_x, base_y = 1920, 1080
+    base_x, base_y = 1920, 1152
     real_x = int(x / base_x * device_x)
     real_y = int(y / base_y * device_y)
     os.system('adb shell input tap {} {}'.format(real_x, real_y))
 
 
-def do_money_work():
-    if game_mode == 1:
-        logging.debug('#0 start the game')
-        tap_screen(1600, 970)
-        sleep(step_wait[0])
+# 创建刷金币的函数
+def do_maony_work():
+    # print('点击陨落的废都')
+    tap_screen(490.7, 387.7)
+    # print('等待1秒')
+    sleep(1)
 
-    logging.debug('#1 ready, go!!!')
-    tap_screen(1450, 910)
-    sleep(step_wait[1])
+    # print('点击魔女回忆')
+    tap_screen(1123.4, 519.5)
+    # print('等待1秒')
+    sleep(1)
 
-    logging.debug('#2 auto power on!')
-    tap_screen(1780, 40)
+    # print('点击大师')
+    tap_screen(1644.0, 736.4)
+    # print('等待2秒')
+    sleep(2)
 
-    for i in range(step_wait[2]):
-        tap_screen(1720, 80)
+    # print('点击下一步')
+    tap_screen(1666.0, 1067.0)
+    # print('等待3秒')
+    sleep(3)
+
+    # print('点击闯关')
+    tap_screen(1506.1, 991.0)
+    # print('等待30秒')
+    sleep(30)
+
+    # print('点击自动')
+    tap_screen(1791.0, 70.9)
+    # print('等待32秒')
+    sleep(32)
+
+    # print('瞎点10次')
+    for i in range(10):
+        tap_screen(399.7, 599.5)
         sleep(1)
 
-    logging.debug('#3 do it again...\n')
-    tap_screen(1600, 980)
-    sleep(step_wait[4])
+    # print('等待3s')
+    sleep(3)
+
+    # print('点击屏幕继续')
+    tap_screen(980.5, 1052.0)
+    # print('等待5秒')
+    sleep(5)
+
+    # print('点击再次挑战')
+    tap_screen(1684.1, 1048.0)
+    # print('等待8秒')
+    sleep(8)
+
+    # print('点击返回')
+    tap_screen(123.9, 76.9)
+    # print('等待2秒')
+    sleep(2)
 
 
+# 创建一个主循环
 if __name__ == '__main__':
     for i in range(repeat_times):
-        logging.info('round #{}'.format(i + 1))
-        do_money_work()
+        print('round #{}'.format(i + 1))
+        do_maony_work()
+
+print('任务结束！')
