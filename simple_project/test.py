@@ -40,15 +40,15 @@ def do_maony_work():
     # print('等待2秒')
     sleep(2)
 
-    # print('点击下一步')
+    print('点击下一步')
     tap_screen(1666.0, 1067.0)
     # print('等待3秒')
     sleep(3)
 
-    # print('点击闯关')
+    print('点击闯关')
     tap_screen(1506.1, 991.0)
-    # print('等待30秒')
-    sleep(30)
+    # print('等待33秒')
+    sleep(33)
     print('加载结束')
 
     print('点击自动')
@@ -56,7 +56,7 @@ def do_maony_work():
     # print('等待32秒')
     sleep(32)
 
-    # print('瞎点10次')
+    print('瞎点10次')
     for i in range(10):
         tap_screen(399.7, 599.5)
         sleep(1)
@@ -64,20 +64,15 @@ def do_maony_work():
     # print('等待3s')
     sleep(3)
 
-    # print('点击屏幕继续')
+    print('点击屏幕继续')
     tap_screen(980.5, 1052.0)
+    print('等待7秒')
+    sleep(7)
+
+    print('点击返回')
+    tap_screen(1232.4, 1063.0)
     # print('等待5秒')
     sleep(5)
-
-    # print('点击再次挑战')
-    tap_screen(1684.1, 1048.0)
-    # print('等待8秒')
-    sleep(8)
-
-    # print('点击返回')
-    tap_screen(123.9, 76.9)
-    # print('等待2秒')
-    sleep(2)
 
 
 # 创建一个主循环
