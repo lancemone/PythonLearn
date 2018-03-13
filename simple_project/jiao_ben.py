@@ -71,8 +71,8 @@ def do_maony_work():
 
     print('点击返回')
     tap_screen(1232.4, 1063.0)
-    # print('等待5秒')
-    sleep(5)
+    # print('等待7秒')
+    sleep(7)
 
 
 # 创建一个主循环
