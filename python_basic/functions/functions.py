@@ -270,3 +270,14 @@ def subtraction1(num1, num2):  # 定义函数并设定参数
 
 
 print(subtraction1(1, 2))  # 调用函数，返回结果为：None。
+
+
+# 函数说明 如果想为函数添加说明文档，除了使用“#”进行注释，还可以在def语句后面直接写入说明字符串。
+def get_area(width, height):
+    '这是一个计算面积的函数。'
+    return width * height
+
+
+# 当一个函数添加了文档，我们可以通过调用函数的__doc__属性查看文档。
+print(get_area.__doc__)  # 显示输出结果为：这是一个计算面积的函数。
+help(get_area)  # 还可以使用内置函数help()进行查看
