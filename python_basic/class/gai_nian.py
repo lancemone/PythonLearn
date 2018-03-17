@@ -163,4 +163,73 @@ print(ShieldingWords.__bases__)  # 显示输出结果为：(<class '__main__.Shi
 s = ShieldingWords()
 print(s.__class__)  # 显示输出结果为：<class '__main__.ShieldingWords'>
 
-# 多继承（Multiple Inheritance）
+
+# 多继承（Multiple Inheritance） 多继承是指类能够继承自多个超类
+# 注意区分多重继承：多重继承是指C继承B，B继承A这样的继承形式
+# 多继承的使用很简单，只需要在来名称后面的括号中写入超类的名称并用逗号分隔即可。当多个超类都具有相同的特性时，只会继承第一个（最左侧）超类中的特性。
+
+class Children:
+    age = 10
+
+    def activitie(self):
+        print('玩具')
+
+
+class Student:
+    grade = 3
+
+    def activitie(self):
+        print('作业')
+
+
+class Pupil(Student, Children):
+    def __init__(self):
+        print('我今年%s岁，已经上%s年级了' % (self.age, self.grade))
+
+
+p = Pupil()  # 输出结果为  我今年10岁，已经上3年级了
+p.activitie()  # 输出结果为 作业
+
+# 检查对象的特性：如果想知道一个对象是否具有某个特性，可以使用hasattr(o,name)函数，当包含指定特性的名称时，返回值为True；否则，为False
+
+c = Children()
+print(hasattr(c, 'age'))  # 检查特性age，显示输出结果为：True
+print(hasattr(c, 'grade'))  # 检查特性grate，显示输出结果为：False
+print(hasattr(c, 'activitie'))  # 检查方法activitie，显示输出结果为：True
+print(hasattr(c, 'study'))  # 检查方法study，显示输出结果为：False
+
+# 使用getattr(o,name,default)获取对象的特性，然后通过callable(object)检查对象的特性是否能被调用
+print(callable(getattr(c, 'activitie', None)))  # 显示输出结果为：True
+print(callable(getattr(c, 'study', None)))  # 显示输出结果为：False
+
+
+# 多态，在Python中是指多个不同类的对象，都具有一些共同的特性，这些对象中的任何一个对象，都可以调用这些共同的特性。但是，因为是不同类的对象，所以，在调用同一个特性时，会表现出不同的行为。
+# count()方法就是多态特性
+class Lion:  # 定义狮子类
+    def eat(self):  # 定义进食函数
+        print('狮子在吃东西！')
+
+
+class Tiger:  # 定义老虎类
+    def eat(self):  # 定义进食函数
+        print('老虎在吃东西！')
+
+
+class Bear:  # 定义狗熊类
+    def eat(self):  # 定义进食函数
+        print('狗熊在吃东西！')
+
+
+class Feeder:  # 定义饲养员类
+    def feed_animal(self, animal):  # 定义喂食方法
+        animal.eat()
+
+
+# 喂养过程
+feeder = Feeder()
+animal = Lion()
+feeder.feed_animal(animal)  # 显示输出结果为：我是狮子，在吃东西！
+animal = Tiger()
+feeder.feed_animal(animal)  # 显示输出结果为：我是狮子，在吃东西！
+animal = Bear()
+feeder.feed_animal(animal)  # 显示输出结果为：我是狗熊，在吃东西！
