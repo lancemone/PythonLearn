@@ -162,3 +162,5 @@ print(ShieldingWords.__bases__)  # 显示输出结果为：(<class '__main__.Shi
 # 调用__class__特性知道某个对象是哪个类的实例
 s = ShieldingWords()
 print(s.__class__)  # 显示输出结果为：<class '__main__.ShieldingWords'>
+
+# 多继承（Multiple Inheritance）
