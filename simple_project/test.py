@@ -1,17 +1,18 @@
-class A(object):
-    def __init__(self):
-        self.__data = []
+class Data_test(object):
+    day = 0
+    month = 0
+    year = 0
 
-    def add(self, item):
-        self.__data.append(item)
+    def __init__(self, year=0, month=0, day=0):
+        self.year = year
+        self.month = month
+        self.day = day
 
-    def printData(self):
-        print(self.__data)
+    def out_date(self):
+        print(self.year)
+        print(self.month)
+        print(self.day)
 
 
-a = A()
-a.add('hello')
-a.add('python')
-a.printData()
-# print(a.__data)
-print(a._A__data)
+t = Data_test(2013, 2, 4)
+t.out_date()

@@ -13,7 +13,7 @@
 # " 双下划线 " 开始的是私有成员，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据。
 # （3）__xxx__ 系统定义名字，前后均有一个“双下划线” 代表python里特殊方法专用的标识，如 __init__（）代表类的构造函数。
 
-class A(object):
+class AA(object):
     def __init__(self):
         self.__data = []  # 翻译成 self._A__data=[]
 
@@ -24,9 +24,49 @@ class A(object):
         print(self.__data)  # 翻译成 self._A__data
 
 
-a = A()
+a = AA()
 a.add('hello')
 a.add('python')
 a.printData()
 # print a.__data  #外界不能访问私有变量 AttributeError: 'A' object has no attribute '__data'
-print(a._A__data)  # 通过这种方式，在外面也能够访问“私有”变量；这一点在调试中是比较有用的！
+print(a._AA__data)  # 通过这种方式，在外面也能够访问“私有”变量；这一点在调试中是比较有用的！
+
+
+# Python把以两个下划线开头且没有以两个下划线结尾的变量当作私有变量。在代码生成之前先执行私有变量轧压。
+class A(object):
+    def __init__(self):
+        self.__private()
+        self.public()
+
+    def __private(self):
+        print('A.__private()')
+
+    def public(self):
+        print('A.public()')
+
+
+class B(A):
+    def __private(self):
+        print('B.__private()')
+
+    def public(self):
+        print('B.public()')
+
+
+b = B()  # 输出： A.__private() B.public()
+
+
+# 因为在类B定义的时候没有覆盖__init__方法，所以调用的仍然是A.__init__，即执行了self._A__private()，自然输出“A.__private()”了
+class C(A):
+    def __init__(self):  # 重写__init__
+        self.__private()  # 这里绑定的是_C_private
+        self.public()
+
+    def __private(self):
+        print('C.__private')
+
+    def public(self):
+        print('C.public()')
+
+
+c = C()  # 输出： C.__private() C.public()
