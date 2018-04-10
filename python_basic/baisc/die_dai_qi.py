@@ -98,4 +98,77 @@ def generate2(lst2):
 
 
 lst2 = [1, [2, [3, 4]], 5, [6, [7, [8, 9]]]]
+lst21 = [[1, 2], 3, 'abc', 4, [[5, 6, [7, 8]]]]
 print(list(generate2(lst2)))
+print(list(generate2(lst21)))  # 输出结果：[1, 2, 3, 'a', 'b', 'c', 4, 5, 6, 7, 8]
+
+
+# 使结果输出[1, 2, 3, ‘abc’, 4, 5, 6, 7, 8]
+def generate3(lst3):
+    for sublst in lst3:
+        try:
+            try:
+                sublst + ''  # 验证元素是否为字符串
+            except:  # 发生异常（不是字符串）
+                pass  # 继续执行下方for循环
+            else:  # 抛出异常，被外层except捕获
+                raise Exception
+            for element in generate3(sublst):
+                yield element
+        except:
+            yield sublst
+
+
+print(list(generate3(lst21)))
+
+
+# 生成器方法
+# 1、send():send()方法不能直接使用，他只有在生成器挂起状态（至少生成一次）下才能使用
+# send()方法获取到的是前一次生成的结果。
+def generate4(lst):
+    for i in lst:
+        if i % 3 == 0:
+            s = yield i  # 通过变量s获取外部send()函数传入的字符串
+            print(s % i)
+
+
+lst4 = [97, 19, 29, 72, 16, 93, 47, 92, 26, 75, 62, 89, 58, 10, 65, 63, 13, 52, 51, 60]
+g = generate4(lst4)
+next(g)  # 生成第1个数值，此时生成器为挂起状态
+while True:
+    try:
+        g.send('数字%s能够被3整除。。。')
+    except:
+        break
+
+
+# 2、throw()能够引发生成器异常
+def generate5(lst):
+    try:  # 捕获异常
+        for i in lst:
+            if i % 3 == 0:
+                yield i
+    except:  # 抛出异常
+        raise Exception('程序已终止')
+
+
+lst5 = [97, 19, 29, 72, 16, 93, 47, 92, 26, 75, 62, 89, 58, 10, 65, 63, 13, 52, 51, 60]
+gg = generate(lst5)
+print(next(gg))  # 显示输出结果为：72
+gg.throw(Exception)  # 引发异常
+
+
+# 3、close()方法用于关闭生成器，关闭之后无法再继续生成。
+def generate6(lst):
+    for i in lst:
+        if i % 3 == 0:
+            yield i
+
+
+lst6 = [97, 19, 29, 72, 16, 93, 47, 92, 26, 75, 62, 89, 58, 10, 65, 63, 13, 52, 51, 60]
+ggg = generate(lst)
+print(next(ggg))  # 显示输出结果为：72
+ggg.close()
+print(next(ggg))  # 抛出异常：StopIteration
+
+# 在生成器中使用递归

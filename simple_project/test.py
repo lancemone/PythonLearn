@@ -1,11 +1,6 @@
-def generate2(lst2):
-    for sublst in lst2:
-        try:
-            for num in generate2(sublst):
-                yield num
-        except:
-            yield sublst
+import wx
 
-
-lst2 = [1, [2, [3, 4]], 5, [6, [7, [8, 9]]]]
-print(list(generate2(lst2)))
+app = wx.App()  # 创建应用
+win = wx.Frame(None, title='文本编辑', size=(400, 320))  # 创建框架
+win.Show()  # 显示框架
+app.MainLoop()  # 运行主程序
