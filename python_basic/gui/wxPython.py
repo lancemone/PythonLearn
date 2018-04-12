@@ -61,9 +61,9 @@ name：控件的名称。
 '''
 file_btn = wx.FilePickerCtrl(pan, pos=(5, 5))  # 文件选择控件：FilePickerCtrl
 # FilePickerCtrl控件默认的文字为Browse（浏览），如果想改成中文，不能直接调用SetLabel()方法.原因就是这个控件由两个控件（TextCtrl和PickerCtrl）组成，如果设置选择控件（PickerCtrl）的文本，必须先获取选择控件。
-file_btn.GetPickerCtrl().SetLable('选择')
-open_btn = wx.Button(pan, lable='打开', pos=(215, 5), size=(80, 30))  # 按钮：Button
-save_btn = wx.Button(pan, lable='保存', pos=(300, 5), size=(80, 30))
+file_btn.GetPickerCtrl().SetLabel('选择')
+open_btn = wx.Button(pan, label='打开', pos=(215, 5), size=(80, 30))  # 按钮：Button
+save_btn = wx.Button(pan, label='保存', pos=(300, 5), size=(80, 30))
 # TextCtrl控件默认是单行文本输入框，如果想能够多行输入并且带有滚动条，需要设置style参数。
 cont_ipt = wx.TextCtrl(pan, pos=(5, 40), size=(375, 240),
                        style=wx.TE_MULTILINE | wx.HSCROLL)  # 文本控件：TextCtrl.wx.TE_MULTILINE：文本允许多行（自动允许垂直滚动);wx.HSCROLL：允许水平滚动
@@ -79,7 +79,7 @@ hbox.Add(save_btn, proportion=0, flag=wx.LEFT, border=5)
 vbox = wx.BoxSizer(wx.VERTICAL)  # 尺寸器实例化（垂直）
 vbox.Add(hbox, proportion=0, flag=wx.EXPAND | wx.ALL, border=5)
 vbox.Add(cont_ipt, proportion=1, flag=wx.EXPAND | wx.LEFT | wx.BOTTOM | wx.RIGHT, border=5)
-pan.SetSize(vbox)  # 为窗口设置尺寸器。SetSizer( sizer)：将设置好布局的尺寸器添加到窗口。
+pan.SetSizer(vbox)  # 为窗口设置尺寸器。SetSizer(sizer)：将设置好布局的尺寸器添加到窗口。
 
 '''Add (sizer, proportion=0, flag=0, border=0)：此方法能够将子尺寸器（或控件）添加到尺寸器。
 
@@ -93,8 +93,45 @@ wx.LEFT/wx.RIGHT/wx.BOTTOM/wx.ALL：指定边界宽度将应用到的尺寸器�
 
 border：边距；值为整数。'''
 
-# 3、显示框架
+
+# 5、添加函数
+def open_filr(event):
+    file_path = file_btn.GetPath()  # 从文件选择器控件获取文件路径.通过Get方法能够获取到控件中的路径以及值
+    with open(file_path) as file:  # 打开文件
+        cont_ipt.SetValue(file.read())  # 读取文件内容这只到文本控件的值
+
+
+def save_file(event):
+    file_path = file_btn.GetPath()
+    with open(file_path, 'w') as file:
+        file.write(cont_ipt.GetValue())
+
+
+'''控件的Get方法还有很多，在这里没有办法一一介绍。
+
+比较常用的一些方法：
+GetPath()：获取路径。
+GetValue()：获取控件的值。
+GetLabel()：获取控件的标签文本。
+GetName()：获取控件的名称。
+GetId()：获取控件的ID。
+GetSize()：获取控件的尺寸。
+GetPosition()：获取控件的位置'''
+
+# 6、函数与控件绑定
+open_btn.Bind(wx.EVT_BUTTON, open_filr)
+save_btn.Bind(wx.EVT_BUTTON, save_file)
+
+# 7、显示框架
 win.Show()  # Show(show=True)：用于显示隐藏窗口。不填入参数或参数为True时，显示窗口；参数为False时，隐藏窗口。
 
-# 运行主程序
+# 8、运行主程序
 app.MainLoop()  # MainLoop()：循环执行GUI主程序
+
+'''Python文件有以下几种类型：
+
+py：源代码文件。由 py.exe 运行，也可以通过命令行终端运行。
+pyw：图形界面程序源代码文件。由pyw.exe运行，和py运行的区别在于不会显示命令行窗口。不过，还是建议大家在编程过程中，先将源代码命名为py文件，当程序出现错误时，能够在命令行窗口看到相关信息。
+pyc：py文件经过编译后产生的文件，无法直接看到源代码。因为已经经过编译，运行速度比py文件更快。
+pyo：py文件优化编译后产生的文件，无法直接看到源代码。可以在命令行窗口，通过 “python -O 源代码文件”将源代码文件编译为pyo 文件。
+pyd：这类文件不是用 python 编写成的，一般是其他语言编写的 python 扩展模块。'''
