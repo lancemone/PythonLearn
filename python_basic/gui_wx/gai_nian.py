@@ -118,7 +118,7 @@ GetId()：获取控件的ID。
 GetSize()：获取控件的尺寸。
 GetPosition()：获取控件的位置'''
 
-# 6、函数与控件绑定
+# 6、函数与控件绑定(事件)
 open_btn.Bind(wx.EVT_BUTTON, open_filr)
 save_btn.Bind(wx.EVT_BUTTON, save_file)
 
@@ -135,3 +135,11 @@ pyw：图形界面程序源代码文件。由pyw.exe运行，和py运行的区�
 pyc：py文件经过编译后产生的文件，无法直接看到源代码。因为已经经过编译，运行速度比py文件更快。
 pyo：py文件优化编译后产生的文件，无法直接看到源代码。可以在命令行窗口，通过 “python -O 源代码文件”将源代码文件编译为pyo 文件。
 pyd：这类文件不是用 python 编写成的，一般是其他语言编写的 python 扩展模块。'''
+
+'''在 frame 里面，你可以使用若干个 wxWindow 子类来充实 frame 的内容，常用的元素有以下几种：
+
+wx.MenuBar, 在 frame 的顶部填加菜单栏
+wx.StatusBar, 在 frame 的底部填加状态栏，显示状态信息
+wx.ToolBar, 在 frame 中添加工具栏
+wx.Control 的子类，它们代表用户接口的widgets (例如显示数据 and/or 处理用户输入的可见元素). 常见的wx.Control 对象包括 wx.Button, wx.StaticText, wx.TextCtrl 和 wx.ComboBox.
+wx.Panel, 它是容纳各种wx.Control 对象的容器。把wx.Control 对象放入wx.Panel, 用户就可以操作它们。'''
