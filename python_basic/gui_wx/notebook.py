@@ -21,8 +21,9 @@ class MainWindow(wx.Frame):  # 生成一个wx.Frame的子类
 
         # 创建菜单栏
         menuBar = wx.MenuBar()
-        menuBar.Append(filemenu, '文件')
+        menuBar.Append(filemenu, 'NoteBook')
         self.SetMenuBar(menuBar)
+        # 创建菜单项
 
 
         # 事件处理(event handling)
@@ -67,7 +68,7 @@ class MainWindow(wx.Frame):  # 生成一个wx.Frame的子类
     def OnOpen(self, event):
         'open a file'
         self.dirname = ''
-        dlg = wx.FileDialog(self, 'choose a file', self.dirname, '', '*.*', wx.OPEN)
+        dlg = wx.FileDialog(self, 'choose a file', self.dirname, '', '*.*', wx.OPE)
         if dlg.ShowModal() == wx.ID_OK:
             self.filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -75,8 +76,6 @@ class MainWindow(wx.Frame):  # 生成一个wx.Frame的子类
             self.control.SetValue(f.read())
             f.close()
         dlg.Destroy()
-
-
 
 
 app = wx.App(False)
