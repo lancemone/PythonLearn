@@ -54,25 +54,27 @@ class Mywin(wx.Frame):
         # 添加一个可选中的菜单项1-5
         fileMunu.AppendCheckItem(id=15, item='check')
 
+        # 创建一个菜单2
         exitMenu = wx.Menu()
 
-        self.exit = wx.MenuItem(exitMenu, id=wx.ID_EXIT, text="Quit", kind=wx.ITEM_NORMAL)
-        exitMenu.Append(self.exit)
+        # 创建一个菜单项2-1 并添加到菜单2
+        about1 = wx.MenuItem(exitMenu, id=21, text='About', kind=wx.ITEM_NORMAL)
+        exitMenu.Append(about1)
 
-        # 添加一个菜单项1-6并注册快捷键
-        # quit = wx.MenuItem(fileMunu, id=wx.ID_EXIT, text='Quit\tCtrl+Q', kind=wx.ITEM_NORMAL)
-        # fileMunu.Append(quit)
+        # 添加一个菜单项2-2并注册快捷键
+        exit1 = wx.MenuItem(exitMenu, id=wx.ID_NEW, text="Quit\tCtrl+Q", kind=wx.ITEM_NORMAL)
+        exitMenu.Append(exit1)
 
         # 将菜单添加到菜单栏
-        menuBar.Append(fileMunu, title='&File')
-        menuBar.Append(exitMenu, title='&Exit')
+        menuBar.Append(fileMunu, '&File')
+        menuBar.Append(exitMenu, '&Exit')
 
         # 设置窗口框架的菜单栏
         self.SetMenuBar(menuBar)
 
         # 绑定事件处理
         self.Bind(wx.EVT_MENU, self.OnHandler, newItem)
-        self.Bind(wx.EVT_MENU, self.OnExit, self.exit)
+        self.Bind(wx.EVT_MENU, self.OnExit, exit1)
 
     def OnHandler(self, event):
         print('new')
