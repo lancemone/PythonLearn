@@ -66,10 +66,46 @@ print(by.getvalue())  # 输出十六进制字符串
 # 操作文件和目录 要操作文件、目录，可以在命令行下面输入操作系统提供的各种命令来完成。比如dir、cp等命令。
 # Python内置的os模块也可以直接调用操作系统提供的接口函数。
 import os
+import shutil
 
 print(os.name)  # 获取操作系统类型.如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统
 print(os.uname())  # 获取系统的详细信息
 print(os.environ)  # 获取操作系统中定义的环境变量
 print(os.environ.get('PATH'))  # 获取操作系统中定义的环境变量的某个值调用os.environ.get('key')
+# os.getenv()     # 读取环境变量
+# os.putenv()     # 设置环境变量
 
 # 操作文件和目录的函数一部分放在os模块中，一部分放在os.path模块中
+print(os.path.abspath('.'))  # 获取当前目录的绝对路径
+print(os.path.abspath(".."))  # 获取当前目录的上一级目录路径
+print(os.path.relpath())  # 获取相对路径
+print(os.getcwd())  # 返回当前目录
+print(os.listdir('/Users/taomo/Documents/Code/'))  # 返回指定目录下所有的文件和目录名
+# 合成路径
+# 合并、拆分路径的函数并不要求目录和文件要真实存在，它们只对字符串进行操作
+print(os.path.join('/Users/taomo/Downloads/', 'testdir'))  # 在某个目录下创建一个新目录，首先把新目录的完整路径表示出来
+# 拆分路径
+print(os.path.split('/Users/taomo/Downloads/testdir/file.txt'))  # 可以把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名
+print(os.path.splitext('/Users/taomo/Downloads/testdir/file.doc'))  # 可以直接得到文件扩展名
+os.mkdir('/Users/taomo/Downloads/testdir')  # 创建一个目录
+# os.makedirs(r"")        # 创建多及目录
+os.chdir('/Users/taomo/Downloads/testdir')  # 切换路径
+# os.mknod('file.txt')      # 创建一个空文件。报错Operation not permitted。未解决
+os.system("touch file.txt")  # 创建一个空文件
+# os.rename(old, new)       # 重命名
+# os.stat()       # 获取文件属性
+# os.path.getsize()       # 获取文件大小
+os.remove('/Users/taomo/Downloads/testdir/file.txt')  # 删除一个文件
+# os.rmdir('/Users/taomo/Downloads/testdir')      # 删除一个空目录
+shutil.rmtree("/Users/taomo/Downloads/testdir")  # 删除一个目录，即是目录中包含内容
+# os.removedirs()       # 删除多个目录
+# os.path.isdir()       # 判断一个路径是否为目录
+# os.path.isfile()        # 判断一个路径是否为文件
+# os.path.isabs()         # 判断一个路径是否为绝对路径
+# os.path.exists()        # 判断一个路径是否真的存在
+# os.path.dirname()       # 获取路径名
+# os.path.basename()      # 获取文件名
+# shutil.copy("oldfile","newfile")       # 复制文件，oldfile只能是文件夹，newfile可以是文件，也可以是目标目录
+# shutil.copyfile("oldfile","newfile")        # 复制文件，oldfile和newfile都只能是文件
+# shutil.copytree("olddir","newdir")      # 复制文件夹，olddir和newdir都只能是目录，且newdir必须不存在
+# shutil.move("oldpos","newpos")      # 移动文件
